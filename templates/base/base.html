@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block head %}
+      {% block meta %}
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+      {% endblock meta %}
+         <title style=" font-family: 'Agency FB', arial;" >G.A.D.P.</title>
+      {% load staticfiles %}
+      {% block stylesheets %}
+        <!-- JQVMap -->
+        
+        <!--<script src="/static/vendors/js/jquery-3.3.1.slim.min.js"></script>-->
+        <!--<script src="/static/vendors/js/jquery.min.js"></script>
+        <script src="/static/vendors/js/bootstrap.min.js"></script>-->
+            
+        
+        <link rel="stylesheet" href="/static/vendors/fuenteCss/agency-fb.css">
+        <link href="/static/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+        <!-- Bootstrap -->
+        <link href="/static/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Font Awesome -->
+        <link href="/static/vendors/fonts/css/fontawesome.min.css" rel="stylesheet" >
+
+         <!-- NProgress -->
+        <link href="/static/vendors/nprogress/nprogress.css" rel="stylesheet">
+        <!-- bootstrap-daterangepicker -->
+        <!-- iCheck -->
+        <link href="/static/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+        <!-- bootstrap-progressbar -->
+        <link href="/static/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+        <link href="/static/vendors/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="/static/vendors/css/bootstrap-datepicker.min.css">
+        <link rel="shortcut icon" href="{% static 'images/gobernacionprincipal.png' %}"/>
+        <!--<link rel="stylesheet" href="/static/vendors/datetimepicker-jquery/jquery.datetimepicker.min.css">-->
+      {% endblock stylesheets %}
+      <!-- Custom Theme Style -->
+        <link href="/static/vendors/css/custom.css" rel="stylesheet">
+    {% endblock head %}
+  </head>
+  <body class="{% block body_class %}nav-md {% endblock body_class %}">
+    {% block body  %}
+      <div class="container body">
+        <div class="main_container">
+          {% block sidebar %}
+            <div class="col-md-3 left_col {% block sidebar_class %} {% endblock sidebar_class %}">
+              {% include "base/sidebar.html" %}
+            </div>
+          {% endblock sidebar %}
+          {% block top_navigation %}
+            <div class="top_nav">
+              {% include "base/top_navigation.html" %}
+            </div>
+          {% endblock top_navigation %}
+          {% block content %}
+            <style></style>
+             <!-- {{ content }} -->
+          {% endblock content %}
+          {% block footer %}
+            <footer>
+             
+                  {% include "base/footer.html" %}
+              
+              
+            </footer>
+          {% endblock footer %}
+        </div>
+      </div>
+      {% block javascripts %}
+        <!-- jQuery -->
+        <script src="/static/vendors/jquery/dist/jquery.min.js"></script>
+       
+         <!-- Bootstrap -->
+        <script src="/static/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+        
+          <script src="/static/vendors/js/moment.js"></script>
+       
+        <!-- NProgress -->
+        <script src="/static/vendors/nprogress/nprogress.js"></script>
+        <!-- bootstrap-progressbar -->
+        <script src="/static/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+        <!-- iCheck -->
+        <script src="/static/vendors/iCheck/icheck.min.js"></script>
+           <!-- bootstrap-daterangepicker -->
+          <script src="/static/vendors/fonts/all.js"></script>
+        <script src="/static/vendors/moment/min/moment.min.js"></script>
+         <!--script para las notificaciones -->
+        <script src="/static/vendors/google-code-prettify/src/prettify.js"></script>
+          <!-- Autosize -->
+        <script src="/static/vendors/autosize/dist/autosize.min.js"></script>
+         <script src="/static/vendors/js/es.js"></script>
+        <script src="/static/vendors/js/bootstrap-datetimepicker.min.js" rel="stylesheet"></script>
+       <!-- <script src="/static/vendors/datetimepicker-jquery/jquery.datetimepicker.full.min.js"></script>-->
+          <script src="/static/vendors/js/bootstrap-datepicker.min.js"></script>
+           <script src="/static/vendors/js/bootstrap-datepicker.es.js" charset="UTF-8"></script>
+
+
+
+          <script src="/static/vendors/js/vfs_fonts.js"></script>
+         
+
+
+        <script type="text/javascript">
+            $(function () {
+                $('.date').datetimepicker({
+                     //format:'DD-MM-YYYY'
+                     //format:'YYYY/MM/DD HH:mm',
+                     //format:'DD/MM/YYYY HH:mm',
+                    //format: 'DD/MM/YYYY HH:mm a'
+                     // format: 'yyyy-mm-dd hh:ii'
+                     //format:'d.m.y h:m',
+                });
+
+            });
+        </script>
+        <script type="text/javascript">
+            $(function () {
+
+                $('.datein').datetimepicker();
+                $('.datede').datetimepicker();
+                $('.datefi').datetimepicker({
+                    //useCurrent: false //Important! See issue #1075
+
+                });
+                /*
+                $(".datein").on("dp.change", function (e) {
+                    $('.datein').data("DateTimePicker").minDate(e.date);
+                    $('.datede').data("DateTimePicker").maxDate(e.date);
+                    $('.datefi').data("DateTimePicker").minDate(e.date);
+                });
+                $(".datefi").on("dp.change", function (e) {
+                    $('.datein').data("DateTimePicker").maxDate(e.date);
+                });*/
+            });
+        </script>
+
+          <script type="text/javascript">
+          $(function () {
+               $('.filtrar').datepicker({
+
+                    format: 'dd/mm/yyyy',
+                   language:'es',
+
+                   autoclose: true,
+                   //firstDay: 1
+                });
+
+                var getDate = function (input) {
+                    return new Date(input.date.valueOf());
+                }
+
+               $('.entrada, .salida,.datepicker').datepicker({
+                    //changeMonth: true,
+                    //changeYear: true,
+                    format: 'dd/mm/yyyy', //Se especifica como deseamos representarla
+                   language:'es',
+                  //  startDate: '-0d',
+                   autoclose: true,
+                   //firstDay: 1
+                });
+
+               $('.salida').datepicker({
+                    startDate: '+6d',
+                    endDate: '+36d',
+                });
+
+                $('.entrada').datepicker({
+                    startDate: '+5d',
+                    endDate: '+35d',
+                }).on('changeDate',
+                    function (selected) {
+                        $('.salida').datepicker('clearDates');
+                        $('.salida').datepicker('setStartDate', getDate(selected));
+                    });
+
+           })
+          </script>
+           <script>
+              $(document).ready(function() {
+                  // messages timeout for 3 sec 
+                  setTimeout(function() {
+                      $('.message').fadeOut('slow');
+                  }, 3000); // <-- time in milliseconds, 1000 =  1 sec
+              });
+          </script>  
+          
+       {% endblock %}
+      <!-- Custom Theme Scripts -->
+     <script src="/static/vendors/js/custom.js"></script>
+    {% endblock body %}
+  </body>
+</html>

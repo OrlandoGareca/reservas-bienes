@@ -1,0 +1,70 @@
+{% extends "base/base.html" %}
+{% load crispy_forms_tags %}
+{% block title %} Form Validation {% endblock title %}
+{% block content %}
+  <div class="right_col" role="main">
+     <div class="col-md-4 col-sm-offset-8">
+                       {% if messages %}
+                       <ul class="message">
+                        
+                          {% for message in messages %}
+                                <div  style="text-align: center" class="alert alert-danger {{ message.tags }} alert-dismissible" role="alert">
+                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                      <a href="#" class="del-msg">&times;</a>
+                                  </button>
+                                  {{ message }}
+                                 
+                                </div>
+                          {% endfor %}
+                          
+                         
+                        </ul>
+                    {% endif %}
+                    </div>
+    <div class="">
+      <div class="page-title">
+           <div class="title_right">
+          <h3>Gobierno Autonomo Departamental de Potosi </h3>
+        </div>
+        <div class="title_right">
+          <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+          </div>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12"></div>
+          <div class="x_panel">
+            <div class="x_title">
+              <h2> <small></small></h2>
+              <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div >
+                    <form method="post" style="align-content: center" >
+                        {% csrf_token %}
+                        <div   style="width: 33%; margin-right: 10px; margin-left: 30%; margin-right: 30%" >
+                        {{ form.estado |as_crispy_field}}
+                        {{ form.monto_total |as_crispy_field}}
+                        {{ form.monto_depositado |as_crispy_field}}
+                        {{ form.porcentaje_multa |as_crispy_field}}
+                        {{ form.monto_faltante |as_crispy_field }}
+                        <button type="submit" class="btn btn-primary">Pagar</button>
+                        <a class="btn btn-success" href="{% url 'contratolargo:buscarUsr' %}">Cancelar</a>
+                        </div>
+                   
+                    </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
+
+{% block javascripts %}
+  {{ block.super }}
+  <!-- validator -->
+  <script src="/static/vendors/validator/validator.js"></script>
+{% endblock javascripts %}

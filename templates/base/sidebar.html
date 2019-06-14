@@ -1,0 +1,74 @@
+<div class="left_col scroll-view">
+  <div class="navbar nav_title" style="border: 0;">
+    <a href="{% url 'contratolargo:principal'  %}" class="site_title">&nbsp<i class="fa fa-home"></i> <span>&nbsp G.A.D.P</span></a>
+
+  </div>
+
+  <div class="clearfix"></div>
+
+  <!-- menu profile quick info -->
+  <div class="profile clearfix">
+    <div class="profile_pic">
+      <img src="/static/images/gobierno.png" alt="..." class="img-circle profile_img">
+    </div>
+    <div class="profile_info">
+      <span>BIENVENIDO</span>
+      <h2>{{  user.first_name  }} <br>{{ user.last_name }} </h2>
+    </div>
+  </div>
+  <!-- /menu profile quick info -->
+
+  <br />
+
+  <!-- sidebar menu -->
+  <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+    <div class="menu_section">
+      <h3>Inicio</h3>
+
+      <ul class="nav side-menu">
+        <!--<li><a><i class="fa fa-home"></i> Ubicacion <span class="fa fa-chevron-down"></span></a>
+          <ul class="nav child_menu">
+            <li><a href="index2.html">IV centenario</a></li>
+            <li><a href="index3.html">Ex terminal</a></li>
+            <li><a href="index2.html">Los pinos</a></li>
+
+            <li><a href="index3.html">SE.DE.DE.</a></li>
+            <li><a href="index2.html">Secretaria departamental de Turismo</a></li>
+            <li><a href="index3.html">Secretaria departamental de Mineria</a></li>
+            <li><a href="index2.html">Ventanilla Unica</a></li>
+            <li><a href="index2.html">IDTGB</a></li>
+            <li><a href="index3.html">Edificio Ex Sedes (Estacionamiento)</a></li>
+            <li><a href="index3.html">Unidad de Transporte</a></li>
+            <li><a href="index2.html">Secretaria Departamental de Desarrollo Agropecuario</a></li>
+            <li><a href="index3.html">Activos Fijos</a></li>
+          </ul>-->
+        </li>
+         <li><a><i class="fa fa-edit" ><br></i>&nbsp&nbsp &nbsp Formularios &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp   <span class="fa fa-chevron-down"></span></a>
+          <ul class="nav child_menu">
+            {% if user.is_authenticated %}
+              {% if user.is_superuser %}
+              {% endif %}
+            {% endif %} 
+            {% if user.is_authenticated %}
+              {% if perms.contratos_largos.Registrar %}
+                <li><a href="{% url 'contratolargo:contratolargo_crear' %}">Formulario Contrato</a></li>
+                      
+                <li><a href="{% url 'contratolargo:contratolargo_crear_corto' %}">Formulario Reservas</a></li>
+              {%endif%}
+            {%endif%}
+            {% if user.is_authenticated %}
+              {% if perms.contratos_largos.ver_formLic %}
+                <li><a  href="{% url 'contratolargo:buscarClas' %}">Listado De Reservas</a></li>
+              {%endif%}
+            {%endif%}
+            {% if user.is_authenticated %}
+              {% if perms.contratos_largos.ver_formUsr %}
+                <li><a  href="{% url 'contratolargo:buscarUsr' %}">Listado De Reservas</a></li>
+              {%endif%}
+            {%endif%}
+          </ul>
+      </ul>
+    </div>
+  </div>
+  <!-- /sidebar menu -->
+</div>

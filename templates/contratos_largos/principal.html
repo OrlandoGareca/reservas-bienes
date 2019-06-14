@@ -1,0 +1,68 @@
+{% extends "base/base.html" %}
+
+{% block title %} Principal {% endblock title %}
+
+{% block stylesheets %}
+  {{ block.super }}
+     <style>
+        .centered {
+         text-align: center;
+        }
+    </style>
+
+{% endblock stylesheets %}
+
+{% block content %}
+  <div class="right_col" role="main">
+    <div class="">
+      <div class="page-title">
+
+
+      </div>
+
+      <div class="clearfix"></div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="x_panel">
+            <div class="x_title">
+              <h2>PRINCIPAL <small></small></h2>
+
+              <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                 <div class="col-md-12">
+          <div class="x_panel">
+            <div class="x_title">
+                    <center>
+                     <h1>SISTEMA PARA EL REGISTRO DE CONTROL DE ALQUILERES Y OTROS INGRESOS</h1>
+                    </center>
+                    <br>
+                    <br>
+                    <br>
+                <div>
+                    <center>
+                      <img src="/static/images/gobernacionprincipal.png"  class="img-fluid img-center " alt="Responsive image" >
+                    </center>
+                </div>
+
+                <div id="calendar"></div>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
+
+{% block javascripts %}
+{{ block.super }}
+
+
+     <!-- validator -->
+  <script src="/static/vendors/validator/validator.js"></script>
+
+    </script>
+
+{% endblock javascripts %}
