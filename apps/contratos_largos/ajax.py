@@ -1,10 +1,10 @@
 from django.http import JsonResponse
 
-from .models import  Espacio
+from .models import Espacio
 
 
 def get_municipios(request):
-    #estado_id = request.GET.get('id')
+    # estado_id = request.GET.get('id')
     lugar_id = request.GET.get('lugar_id')
 
     municipios = Espacio.objects.none()
@@ -16,8 +16,7 @@ def get_municipios(request):
             municipio.id,
             municipio.name
         )
+
     response = {}
     response['municipios'] = options
     return JsonResponse(response)
-
-

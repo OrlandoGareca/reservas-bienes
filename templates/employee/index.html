@@ -1,0 +1,170 @@
+{% extends "base/base.html" %}
+{% block title %} Principal {% endblock title %}
+{% block stylesheets %}
+    {{ block.super }}
+    <style>
+        .centered {
+            text-align: center;
+        }
+    </style>
+{% endblock stylesheets %}
+{% block content %}
+    <div style="height:100%" class="right_col" role="main">
+        <div class="">
+            <div class="row">
+                <div class="col-md-4 col-sm-offset-8">
+                    {% if messages %}
+                        <ul class="message">
+
+                            {% for message in messages %}
+                                <div style="text-align: center"
+                                     class="alert alert-success {{ message.tags }} alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <a href="#" class="del-msg">&times;</a>
+                                    </button>
+                                    {{ message }}
+
+                                </div>
+                            {% endfor %}
+
+
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="page-title">
+                <div class="title_right">
+                    <h3>Gobierno Autonomo Departamental de Potosi </h3>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>USUARIOS <small></small></h2>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <div class="row">
+
+
+                                <div class="table-responsive">
+                                    <div class="col-md-12 col-sm-12 col-xs-12"></div>
+                                    <table align="center" border="1" height=60 width="100%" id="datatable"
+                                           class="table table-striped jambo_table bulk_action table-bordered center-all ">
+                                        <thead>
+                                        <tr>
+                                            <th id="center">N°
+                                            </td>
+                                            <td id="center">Nombres</td>
+                                            <td id="center">Apellidos</td>
+                                            <th id="center">Correo Electronico</th>
+                                            <th id="center">Usuario</th>
+                                            <th id="center">Contraseña</th>
+                                            <th id="center">Acciones</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody id="tags1">
+                                        {% if users %}
+                                            {% for user in users %}
+                                                <tr style="vertical-align: middle;">
+                                                    <td id="center">{{ user.id }}</td>
+                                                    <td id="center">{{ user.first_name }}</td>
+                                                    <td id="center">{{ user.last_name }}</td>
+                                                    <td id="center">{{ user.email }}</td>
+                                                    <td id="center">{{ user.username }}</td>
+                                                    <td id="center">{{ user.password }} </td>
+                                                    <td id="center">
+                                                        <div style="display: flex; ">
+                                                            <div>
+
+                                                                <a style="font-size: 12px;"
+                                                                   class="btn btn-info btn-xs preload "
+                                                                   href="{% url 'administrador:employee_edit' user.id %}">
+                                                                    <span style="color: white;font-size: 10px;"
+                                                                          class="glyphicon glyphicon-pencil "></span>
+                                                                    Editar</a>
+                                                            </div>
+                                                            <div>
+                                                                <a style="font-size: 12px;"
+                                                                   class="btn btn-danger btn-xs"
+                                                                   href="{% url 'administrador:employee_delete' user.id %}">
+                                                                    <span style="color: white;font-size: 10px;"
+                                                                          class="glyphicon glyphicon-trash"></span>
+                                                                    Borrar</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+
+                                                </tr>
+
+                                            {% endfor %}
+                                            </tbody>
+                                            </table>
+                                        {% else %}
+                                            <p>There is no employee available.</p>
+                                        {% endif %}
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+{% block javascripts %}
+    {{ block.super }}
+    <!-- validator -->
+    <script src="/static/vendors/validator/validator.js"></script>
+    <script>
+
+        $('#datatable').DataTable({
+            "searching": false,
+            "paging": true,
+            "ordering": false,
+            "info": false,
+            "bFilter": false,
+            "bLengthChange": false,
+            language: {
+                "decimal": "",
+                "emptyTable": "No hay información",
+                "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                "infoPostFix": "",
+                "thousands": ",",
+                "lengthMenu": "Mostrar _MENU_ Entradas",
+                "loadingRecords": "Cargando...",
+                "processing": "Procesando...",
+                "search": "Buscar:",
+                "zeroRecords": "Sin resultados encontrados",
+                "paginate": {
+                    "first": "Primero",
+                    "last": "Ultimo",
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                }
+            },
+        });
+    </script>
+    <script>
+        function abrir_modal(url) {
+            $('#popup').load(url, function () {
+                $(this).modal('show');
+            });
+            return false;
+        }
+
+        function cerrar_modal() {
+            $('#popup').modal('hide');
+            return false;
+        }
+    </script>
+{% endblock javascripts %}

@@ -1,0 +1,99 @@
+
+
+{% extends "base/base.html" %}
+{% load crispy_forms_tags %}
+{% block title %} Form Validation {% endblock title %}
+{% block content %}
+    <style>
+
+    </style>
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="row">
+                <div class="col-md-4 col-sm-offset-8">
+                    {% if messages %}
+                        <ul class="message">
+
+                            {% for message in messages %}
+                                <div style="text-align: center"
+                                     class="alert alert-danger {{ message.tags }} alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <a href="#" class="del-msg">&times;</a>
+                                    </button>
+                                    {{ message }}
+
+                                </div>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="page-title">
+                <div class="title_right">
+                    <h3>Gobierno Autonomo Departamental de Potosi </h3>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12 ">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>ELIMINAR USUARIO! <small></small></h2>
+                            <ul class="nav navbar-right panel_toolbox"></ul>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <form method="post">
+                            {% csrf_token %}
+                            <!-- form input mask -->
+                            <div class="col-md-4 col-sm-4 col-xs-4 col-sm-offset-4">
+                                <div class="x_panel">
+                                    <div class="x_title" style="text-align: center">
+
+                                        <h4>Deseas eliminar a este usuario?</h4>
+                                    </div>
+                                    <div class="x_content">
+                                        <div class="col-md-4 col-sm-4 col-xs-4 " style="width: 100%;  ">
+                                            <br>
+
+
+                                            <div style="text-align: center">
+                                                <h2>{{ user.first_name }} &nbsp; {{ user.last_name }}</h2>
+                                            </div>
+                                            <form method="post">
+                                                {% csrf_token %}
+                                                <div style="text-align: center; margin-top: 25px">
+                                                    <input class="btn btn-danger" type="submit" value="Si,Eliminar">
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock content %}
+{% block javascripts %}
+    <script src="/static/vendors/js/jquery.min.js"></script>
+    {{ block.super }}
+
+    <!-- validator -->
+{% endblock javascripts %}
+
+
+
+
+
+
+
+
+
+

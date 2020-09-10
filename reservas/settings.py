@@ -33,7 +33,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-DATE_INPUT_FORMATS = ('%d-%m-%Y')
+#DATETIME_INPUT_FORMATS = ('%d-%m-%Y')
+#ALLOWED_HOSTS = ['192.168.0.150']
 
 # Application definition
 
@@ -47,10 +48,11 @@ INSTALLED_APPS = [
     'apps.usuario',
     'apps.contratos_largos',
     'crispy_forms',
-    'django_filters',
+    
     'datetimepicker',
     'bootstrap3_datetime',
     'widget_tweaks',
+    
 ]
 
 MIDDLEWARE = [
@@ -90,11 +92,11 @@ WSGI_APPLICATION = 'reservas.wsgi.application'
 DATABASES = {
    'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'bdreservas',
+        'NAME': 'dbpersonal',
         'USER': 'postgres',
         'PASSWORD': 'sistemas',
         'HOST': 'localhost',
-        'PORT': 5432,
+        'PORT': 5433,
 
     }
 }
@@ -137,8 +139,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-DATE_FORMAT='%d/%m/%Y'
-DATETIME_FORMAT = '%d/%m/%Y %I :%M'
+#DATE_FORMAT='%d/%m/%Y'
+DATETIME_FORMAT = '%d/%m/%Y %H:%M'
 #STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_DIRS =(os.path.join(BASE_DIR, 'static'),)
@@ -154,7 +156,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 25
-EMAIL_HOST_USER = 'orlando.dilmar.gareca.pena@gmail.com'
+# EMAIL_HOST_USER = 'orlando.dilmar.gareca.pena@gmail.com'
 EMAIL_HOST_PASSWORD = 'malaleche'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 

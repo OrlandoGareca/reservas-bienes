@@ -1,0 +1,89 @@
+{% extends "base/base.html" %}
+{% load crispy_forms_tags %}
+{% block title %} Principal {% endblock title %}
+{% block stylesheets %}
+    {{ block.super }}
+    <style>
+        .centered {
+            text-align: center;
+        }
+    </style>
+{% endblock stylesheets %}
+{% block content %}
+    <div style="height:100%" class="right_col" role="main">
+        <div class="">
+            <div class="row">
+                <div class="col-md-4 col-sm-offset-8">
+                    {% if messages %}
+                        <ul class="message">
+
+                            {% for message in messages %}
+                                <div style="text-align: center"
+                                     class="alert alert-success {{ message.tags }} alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <a href="#" class="del-msg">&times;</a>
+                                    </button>
+                                    {{ message }}
+
+                                </div>
+                            {% endfor %}
+
+
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="page-title">
+                <div class="title_right">
+                    <h3>Gobierno Autonomo Departamental de Potosi </h3>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>CREAR USUARIO <small></small></h2>
+                            <div class="clearfix"></div>
+                        </div>
+
+                    </div>
+                    <div class="x_content">
+                        <form method="post">
+                            {% csrf_token %}
+                            <!-- form input mask -->
+                            <div class="col-md-4 col-sm-4 col-xs-4 col-sm-offset-4">
+                                <div class="x_panel">
+                                    <div class="x_content">
+                                        <div class="col-md-6 col-sm-6 col-xs-6" style="width: 100%;  ">
+                                            {{ user_form.first_name |as_crispy_field }}
+                                            {{ user_form.last_name |as_crispy_field }}
+                                            {{ user_form.email |as_crispy_field }}
+                                            {{ user_form.username |as_crispy_field }}
+                                            {{ user_form.password |as_crispy_field }}
+                                        </div>
+                                        <div class="col-md-4 col-sm-4 col-xs-4">
+                                            <button type="submit" class="btn btn-success float-right"
+                                                    style="margin-top: 25px">Enviar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+{% block javascripts %}
+    {{ block.super }}
+    <!-- validator -->
+    <script src="/static/vendors/validator/validator.js"></script>
+{% endblock javascripts %}

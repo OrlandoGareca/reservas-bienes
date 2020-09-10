@@ -1,29 +1,33 @@
 <div class="nav_menu">
-  <nav>
-    <div class="nav toggle">
-      <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-    </div>
+    <nav>
+        <div class="nav toggle">
+            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="">
+                <ul class="nav navbar-nav navbar-left">
+                    <li class="dropdown">
+                        <a href="#" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                           role="button" aria-expanded="false">{{ user.username }} <img class="pull-left"
+                                                                                        src="/static/images/gobierno.png"
+                                                                                        alt=""> <span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
 
-    <ul class="nav navbar-nav navbar-right">
-      <li class="">
-       <ul class="nav navbar-nav navbar-left">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-             role="button" aria-expanded="false">{{  user.username  }}<span class="caret" ></span></a>
-             <ul class="dropdown-menu" role="menu">
-                
-                {% if user.is_authenticated %}
-                  {% if perms.contratos_largos.editarUsr %}
-                  <li><a href="{% url 'usuario:usuario_actualizar' user.id %}"><span class="fa fa-user-edit pull-right"></span>Editar Perfil</a> </li>
-                  {%endif%}
-                {%endif%}
-                <li><a href="{% url 'logout' %}"><span class="fa fa-sign-out-alt pull-right"></span>Cerrar Sesion</a> </li>
+                            {% if user.is_authenticated %}
+                                {% if perms.contratos_largos.editarUsr %}
+                                    <li><a href="{% url 'usuario:usuario_actualizar' user.id %}"><span
+                                            class="fa fa-user-edit pull-right"></span>Editar Perfil</a></li>
+                                {% endif %}
+                            {% endif %}
+                            <li><a href="{% url 'logout' %}"><span class="fa fa-sign-out-alt pull-right"></span>Cerrar
+                                Sesion</a></li>
 
 
-             </ul>
-        </li>
-       </ul>
-      </li>
-    </ul>
-  </nav>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
 </div>

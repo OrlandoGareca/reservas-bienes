@@ -3,57 +3,64 @@
 {% load widget_tweaks %}
 {% block title %} Reporte Contratos {% endblock title %}
 {% block stylesheets %}
-  {{ block.super }}
-    <!-- <link rel="stylesheet" href="/static/css/custom.css">-->
-  <link href="/static/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
-  <link href="/static/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
-  <link href="/static/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
-  <link href="/static/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
-  <link href="/static/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
-    <!--<link rel="sty lesheet" href="/static/css/custom.css">-->
-    <link rel="stylesheet" href="/static/vendors/css/buttons.dataTables.min.css">
+    {{ block.super }
     <style>
-        table{
-            background-color: white;
-            text-align: center;
-            border-collapse: collapse;
-            width: 100px;
-        }
-        th, td {
-            padding: 1px;
-        }
-        thead{
-            background-color: #41719C;
-            border-bottom: solid 5px #F362D;;
-            color: white;
-        }
-        tfoot{
-            background-color: #41719C;
-            color: #fff;
-        }
-        tr:nth-child(even){
-            background-color: #ddd;
-        }
-        tbody tr:hover td{
-            background-color: #369681;
-            color: white;
-        }
-        #buscar{
-            color: white;
-        }
+    table {
+    background-color: white;
+    text-align: center;
+    border-collapse: collapse;
+    width: 100px;
+    }
+
+    th, td {
+    padding: 1px;
+    }
+
+    thead {
+    background-color: #41719C;
+    border-bottom: solid 5px #F362D;;
+    color: white;
+    }
+
+    tfoot {
+    background-color: #41719C;
+    color: #fff;
+    }
+
+    tr:nth-child(even) {
+    background-color: #ddd;
+    }
+
+    /*tbody tr:hover td{
+    background-color: #8adb3e;
+    color: #28394d;
+    }*/
+    #buscar {
+    color: white;
+    }
     </style>
     <style>
-:after, :before {
+    :after, :before {
     box-sizing: border-box;
-}
-a {
+    }
+
+    a {
     color: #337ab7;
     text-decoration: none;
-}
-i{
-  margin-bottom:4px;
-}
-.btn {
+    }
+
+    i {
+    margin-bottom: 4px;
+    }
+
+    #center {
+    font-size: 13px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    }
+
+    .btn {
     display: inline-block;
     font-size: 14px;
     font-weight: 400;
@@ -66,8 +73,9 @@ i{
     background-image: none;
     border: 1px solid transparent;
     border-radius: 4px;
-}
-.btn-app {
+    }
+
+    .btn-app {
     color: white;
     box-shadow: none;
     border-radius: 3px;
@@ -82,329 +90,415 @@ i{
     font-size: 12px;
     transition: all .2s;
     background-color: steelblue !important;
-}
-.btn-app > .fa, .btn-app > .glyphicon, .btn-app > .ion {
+    }
+
+    .btn-app > .fa, .btn-app > .glyphicon, .btn-app > .ion {
     font-size: 30px;
     display: block;
-}
-.btn-app:hover {
+    }
+
+    .btn-app:hover {
     border-color: #aaa;
     transform: scale(1.1);
-}
-.pdf {
-  background-color: #dc2f2f !important;
-    ;
-}
-.excel {
-    background-color: #3ca23c !important;
-}
-.csv {
-    background-color: #e86c3a !important;
-}
-.imprimir {
-    background-color: #8766b1 !important;
-}
-.glyphicon.glyphicon-save-file {
-    font-size: 35px;
-}
-.selectTable{
-  height:40px;
-  float:right;
-}
+    }
 
-div.dataTables_wrapper div.dataTables_filter {
+    .glyphicon.glyphicon-save-file {
+    font-size: 35px;
+    }
+
+    .selectTable {
+    height: 40px;
+    float: right;
+    }
+
+    div.dataTables_wrapper div.dataTables_filter {
     text-align: left;
     margin-top: 15px;
-}
-.btn-secondary {
+    }
+
+    .btn-secondary {
     color: #fff;
     background-color: #4682b4;
     border-color: #4682b4;
-}
-.btn-secondary:hover {
+    }
+
+    .btn-secondary:hover {
     color: #fff;
     background-color: #315f86;
     border-color: #545b62;
-}
-.titulo-tabla{
-  color:#606263;
-  text-align:center;
-  margin-top:15px;
-  margin-bottom:15px;
-  font-weight:bold;
-}
-.inline{
-  display:inline-block;
-  padding:0;
-}
-.dropdown-menu a:hover {background-color: #ddd;}
+    }
 
-table.center-all td,th{
-    text-align :center;
-}
+    .titulo-tabla {
+    color: #606263;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    }
+
+    .inline {
+    display: inline-block;
+    padding: 0;
+    }
+
+    .dropdown-menu a:hover {
+    background-color: #ddd;
+    }
+
+    table.center-all td, th {
+    text-align: center;
+    }
 
 
     </style>
     <style>
-            #oculto{visibility:hidden};
+    #oculto {
+    visibility: hidden
+    }
+
+    ;
     </style>
 {% endblock stylesheets %}
 {% block content %}
-          <div class="right_col" role="main">
-            <div class="">
-             <div class="row">
-                    <div class="col-md-4 col-sm-offset-8">
-                       {% if messages %}
-                      <ul class="message">
-                        
-                        {% for message in messages %}
-                              <div style="text-align: center" class="alert alert-success {{ message.tags }} alert-dismissible" role="alert">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <a href="#" class="del-msg">&times;</a>
-                                </button>
-                                {{ message }}
-                               
-                              </div>
-                        {% endfor %}
-                        
-                       
-                      </ul>
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="row">
+                <div class="col-md-4 col-sm-offset-8">
+                    {% if messages %}
+                        <ul class="message">
+
+                            {% for message in messages %}
+                                <div style="text-align: center"
+                                     class="alert alert-success {{ message.tags }} alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <a href="#" class="del-msg">&times;</a>
+                                    </button>
+                                    {{ message }}
+
+                                </div>
+                            {% endfor %}
+
+
+                        </ul>
                     {% endif %}
-                    </div>
                 </div>
-              <div class="page-title">
+            </div>
+            <div class="page-title">
                 <div class="title_right">
                     <h3>Gobierno Autonomo Departamental de Potosi </h3>
-        </div>
-      </div>
-      
-      <div class="row"><p>
-          
-  </p>
-  <div id="accordion">
-    </div>
-        <div class="card">
-          <div class="card-header" id="headingTwo">
-            <h5 class="mb-0">
-              <button class="btn btn-primary collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    BUSCAR REGISTROS
-                    <span class="caret"></span>
-              </button>
-            </h5>
-          </div>
-          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-            <div class="card-body">
-                 &nbsp&nbsp
-                    <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12" {% if error %} style="display:block" {%else%} style="display: none" {%endif%}>
-                        <div class="alert" style="background-color: rgba(255, 222, 222, 0.88);border-top: solid 3px rgba(255, 0, 0, 0.88)">                           
-                            <p style="color: black;"  class="error">{{error}}</p>
+                </div>
+            </div>
+
+            <div class="row"><p>
+
+
+            </p>
+                <div id="accordion">
+                </div>
+                <div class="x_panel">
+                    <div class="x_title">
+                        <!-- Button trigger modal -->
+                        <button onload="miFuncion();" id="pageDemo2" type="button" class="btn btn-primary collapsed"
+                                data-toggle="modal" data-target="#myModal">
+
+                            <i class="fa fa-search-plus"></i>Buscar Registro
+                            <span class="caret" style="color: white"></span>
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                             aria-hidden="true">
+                            <div class="modal-dialog" style="width: 50% !important;">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">Filtros para Reportes</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12" {% if error %}
+                                             style="display:block" {% else %} style="display: none" {% endif %}>
+                                            <div class="alert"
+                                                 style="background-color: rgba(255, 222, 222, 0.88);border-top: solid 3px rgba(255, 0, 0, 0.88)">
+                                                <p style="color: black;" class="error">{{ error }}</p>
+                                            </div>
+                                        </div>
+
+                                        <form action="/contratolargo/buscarClas" method="get"
+                                              onsubmit="return validarFecha()">
+                                            <div class="container">
+
+                                                <div class="row">
+                                                    {% if user.is_authenticated %}
+                                                        {% if perms.contratos_largos.FiltroLIc %}
+
+                                                            <div>
+
+                                                                <div class="panel panel-default">
+                                                                    <div class="panel-thumbnail"></div>
+
+                                                                    <div class="panel-body">
+                                                                        <div class='col-sm-4'>
+                                                                            <div class="form-group">
+                                                                                <label for="exampleInputEmail1">Fecha
+                                                                                    Inicial</label>
+                                                                                <div class='input-group'
+                                                                                     id="datetimepicker6">
+                                                                                    <input name="fecha_ini"
+                                                                                           autocomplete="off"
+                                                                                           class="form-control "
+                                                                                           value="{{ fecha_ini }}">
+                                                                                    <span class="input-group-addon">
+                                                                            <span class="glyphicon glyphicon-calendar"
+                                                                                  style="color:black"></span>
+                                                                        </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class='col-xs-4'>
+                                                                            <div class="form-group">
+                                                                                <label for="exampleInputEmail1">Fecha
+                                                                                    Final</label>
+                                                                                <div class='input-group'
+                                                                                     id="datetimepicker7">
+                                                                                    <input name="fecha_fini"
+                                                                                           autocomplete="off"
+                                                                                           class="form-control "
+                                                                                           value="{{ fecha_final }}">
+                                                                                    <span class="input-group-addon">
+                                                                            <span class="glyphicon glyphicon-calendar"
+                                                                                  style="color: black"></span>
+                                                                        </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                        <div class='col-sm-4'>
+                                                                            <div class="form-group">
+                                                                                <label for="exampleInputEmail1">Lugar</label>
+                                                                                <div class='input-group'>
+                                                                                    <select class="form-control"
+                                                                                            name="lugar" id="">
+                                                                                        {% for l in Lugar %}
+
+                                                                                            <option value="{{ l.id }}">{{ l.descripcion }}</option>
+                                                                                        {% endfor %}
+                                                                                    </select>
+                                                                                    <span class="input-group-addon">
+                                                                                    <span class="glyphicon glyphicon-list"
+                                                                                          style="color:black"></span>
+                                                                            </span>
+                                                                                </div>
+                                                                                <!--{{Lugar}}-->
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+
+
+                                                            </div><!--/col-->
+                                                        {% endif %}
+                                                    {% endif %}
+                                                    <!--
+                                                <div class="col-sm-5 col-xs-6">
+                                                
+                                                    <div class="panel panel-default">
+                                                    <div class="panel-thumbnail"></div>
+                                                    <div class="panel-title" style="text-align: center">Filtro Buscar Registro</div>
+                                                    <div class="panel-body">
+                                                        <div class='col-sm-6'>
+                                                                <div class="form-group">
+                                                                    <label for="exampleInputEmail1">Nro Factura</label>
+                                                                    <input type="number" id="numero_fac"name="num_fact"  min="0" pattern="^[0-9]+" class="form-control" placeholder="">  
+                                                                </div>
+                                                        </div>
+                                                        <div class='col-sm-6'>
+                                                                <div class="form-group">
+                                                                    <label for="exampleInputEmail1">DNI/NIT</label>
+                                                                    <input type="number" id="cedulaidentidad" value="{{ci}}" name="cedula" class="form-control" placeholder="">  
+                                                                </div>
+                                                            </div> 
+                                                    </div>
+                                                </div>
+                                                </div>-->
+                                                </div>
+                                            </div>
+
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div style="display: flex; ">
+                                            <button type="submit" class="btn btn-success"><span style="color:white"
+                                                                                                class="glyphicon glyphicon-search"></span>
+                                                Buscar
+                                            </button>
+                                        </div>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Reportes con Reportlab-->
+                        {% if filter|length > 0 %}
+                            <!--Solo lugares-->
+                            {% if lugar_reuqest and not fecha_ini and not fecha_final %}
+
+                                <div class="col-md-2" style="float:right;  ">
+                                    <div class="btn-group">
+                                        <a target="_blank" data-toggle="tooltip" title="Imprimir"
+                                           href="{% url 'contratolargo:reporte_anual_operador' lugar_reuqest None None %}"
+                                           class="btn btn-sm btn-danger"> <i class="glyphicon glyphicon-export"></i>
+                                            Reporte PDF </a>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            <!--solo fecha final y fecha inicial-->
+                            {% if not lugar_reuqest and fecha_ini and fecha_final %}
+                                <div class="col-md-2" style="float:right; ">
+                                    <div class="btn-group">
+                                        <a target="_blank" data-toggle="tooltip" title="Imprimir"
+                                           href="{% url 'contratolargo:reporte_anual_operador' None fecha_ini fecha_final %}"
+                                           class="btn btn-sm btn-danger"> <i class="glyphicon glyphicon-export"></i>
+                                            Reporte PDF </a>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            <!--solo lugar , fecha inicial y fecha final-->
+                            {% if lugar_reuqest and fecha_ini and fecha_final %}
+                                <div class="col-md-2" style="float:right;">
+                                    <div class="btn-group">
+                                        <a target="_blank" data-toggle="tooltip" title="Imprimir"
+                                           href="{% url 'contratolargo:reporte_anual_operador' lugar_reuqest fecha_ini fecha_final %}"
+                                           class="btn btn-sm btn-danger"> <i class="glyphicon glyphicon-export"></i>
+                                            Reporte PDF </a>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endif %}
+
+                    </div>
+                    <ul class="nav navbar-right panel_toolbox">
+                    </ul>
+                    <div class="clearfix"></div>
+
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="x_content">
+                            <div class="table-responsive">
+                                <div class="col-md-12 col-sm-12 col-xs-12"></div>
+                                <table align="center" border="1" height=60 width="100%" id="datatable"
+                                       class="table table-striped jambo_table bulk_action table-bordered center-all ">
+                                    <thead>
+                                    <tr>
+                                        <th id="center">N°
+                                        </td>
+                                        <td id="center">Nombre</td>
+                                        <td id="center">Dni/Nit</td>
+                                        <th id="center">Fecha Inicial</th>
+                                        <th id="center">Fecha Final</th>
+                                        <th id="center">Fecha Deposito</th>
+                                        <th id="center">Monto Total</th>
+                                        <th id="center">Monto Depositado</th>
+                                        <th id="center">Monto Faltante</th>
+                                        <th id="center">Estado</th>
+                                        <th id="center">Nombre Actividad</th>
+                                        <th id="center">Numero Factura</th>
+                                        <th id="center">Numero Deposito</th>
+                                        <th id="center">Lugar</th>
+                                        <th id="center">Espacio</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="tags1">
+                                    {% if filter %}
+                                        {% for contratolargolistar in filter %}
+
+                                            <tr style="vertical-align: middle;">
+                                                <td id="center">{{ forloop.counter }}</td>
+                                                <td id="center">{{ contratolargolistar.nombre }}</td>
+                                                <td id="center">{{ contratolargolistar.dni_nit }}</td>
+                                                <td id="center">{{ contratolargolistar.fecha_inicial |date:"d/m/Y h:i a" }}</td>
+                                                <td id="center">{{ contratolargolistar.fecha_final |date:"d/m/Y h:i a" }}</td>
+                                                <td id="center">{{ contratolargolistar.fecha_deposito |date:"d/m/Y h:i a" }} </td>
+                                                <td id="center">{{ contratolargolistar.monto_total }}.bs</td>
+                                                <td id="center">{{ contratolargolistar.monto_depositado }}.bs</td>
+                                                <td id="center">{{ contratolargolistar.monto_faltante }}.bs</td>
+                                                {% if contratolargolistar.estado %}
+                                                    <td id="center">
+                                                        <div class="dropdown">
+                                                            <button class="badge bg-red  dropdown-toggle" type="button"
+                                                                    data-toggle="dropdown" style="font-size: 9px"
+                                                                    disabled>Activo
+                                                                <span class="caret"></span></button>
+                                                            <ul class="dropdown-menu">
+                                                                <li><a style="font-size: 10px"
+                                                                       href="{% url 'contratolargo:modificar' contratolargolistar.id %}">Pagar<span
+                                                                        style="color: white"
+                                                                        class="badge bg-blue-sky">{{ contratolargolistar.diastotales }}</span></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                {% else %}
+                                                    <td id="center"><span style="color: white;font-size: 9px"
+                                                                          class="badge bg-info">Inactivo</span></td>
+                                                {% endif %}
+                                                <td id="center">{{ contratolargolistar.nombre_completo_actividad }}</td>
+                                                <td id="center">{{ contratolargolistar.numero_factura }} </td>
+                                                <td id="center">{{ contratolargolistar.numero_deposito }} </td>
+                                                <td id="center">{{ contratolargolistar.lugar_name }}</td>
+                                                <td id="center">{{ contratolargolistar.espacio_name }}</td>
+
+                                            </tr>
+
+                                        {% endfor %}
+                                    {% else %}
+                                        <h3 style="text-align: center">No hay registros </h1>
+                                        <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12" {% if error %}
+                                             style="display:block" {% else %} style="display: none" {% endif %}>
+                                            <div class="alert"
+                                                 style="background-color: rgba(255, 222, 222, 0.88);border-top: solid 3px rgba(255, 0, 0, 0.88)">
+                                                <p style="color: black;" class="error">{{ error }}</p>
+                                            </div>
+                                        </div>
+
+                                    {% endif %}
+                                    </tbody>
+                                    <div id="popup" class="modal fade" role="dialog">
+                                    </div>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                    <form action="/contratolargo/buscarClas" method="get">
-                        <div class="container">
-                           
-                            <div class="row">
-                                    {% if user.is_authenticated %}
-                                    {% if perms.contratos_largos.FiltroLIc %}
-                                    
-                                    <div class="col-sm-7 col-xs-6">
-                                   
-                                     <div class="panel panel-default">
-                                       <div class="panel-thumbnail"></div>
-                                       <div class="panel-title" style="text-align: center">Filtros para Reportes</div>
-                                       <div class="panel-body">
-                                            <div class='col-sm-4'>
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Fecha Inicial</label>
-                                                        <div class=''>
-                                                            <input  name="fecha_ini" type="date" class="form-control">                                            
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class='col-xs-4'>
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Fecha Final</label>
-                                                        <div class=''>
-                                                            <input name="fecha_fini" type="date" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
-                                               
-                                                <div class='col-sm-4'>
-                                                    <div class="form-group">
-                                                            <label for="exampleInputEmail1">Lugar</label>
-                                                           
-                                                            <select class="form-control" name="lugar" id="">
-                                                                {% for l in Lugar%}                                
-                                                                        
-                                                                        <option value="{{l.id}}">{{l.descripcion}}</option>
-                                                                {%endfor%}
-                                                                
-                                                            </select>
-                                                            <!--{{Lugar}}-->
-                                                    </div>
-                                                </div>
-                                        
-                                       </div>
-                                     </div>
-                             
-                                     
-                                   </div><!--/col-->
-                                   {%endif%}
-                                   {%endif%}
-                                   
-                                   <div class="col-sm-5 col-xs-6">
-                                   
-                                       <div class="panel panel-default">
-                                       <div class="panel-thumbnail"></div>
-                                       <div class="panel-title" style="text-align: center">Filtro Buscar Registro</div>
-                                       <div class="panel-body">
-                                            <div class='col-sm-6'>
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Nro Factura</label>
-                                                        <input type="number" name="num_fact"  min="0" pattern="^[0-9]+" class="form-control" placeholder="">  
-                                                    </div>
-                                            </div>
-                                            <div class='col-sm-6'>
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">DNI/NIT</label>
-                                                        <input type="number" name="cedula" class="form-control" placeholder="">  
-                                                    </div>
-                                                </div> 
-                                         
-                                        
-                                       </div>
-                                     </div>
-                               
-                                   </div><!--/col-->
-                               
-                                   </div>
-                          
-                        </div >
-                        <div style="display: flex; ">
-                                <button type="submit" class="btn btn-primary" ><span class="glyphicon glyphicon-search"></span> Buscar</button>
-                                <a class="btn btn-primary" href="{% url 'contratolargo:buscarClas' %}">Borrar Busqueda</a>
-
-                        </div>
-                       
-                    </form>
+                </div>
             </div>
-          </div>
+            </p>
         </div>
-
-    <div class="x_title">
-      <h2>Listar Registros <small>Contratos</small></h2>
-      <ul class="nav navbar-right panel_toolbox">
-      </ul>
-      <div class="clearfix"></div>
     </div>
-      <div class="clearfix"></div>
-    <div class="x_content">
-      </div>
-      </p>
-      </form>
-      <table id="datatable" class="table table-striped table-bordered center-all ">
-        <thead>
-            <tr>
-                <th>N°</td>
-                <td>Nombre</td>
-                <td>Dni/Nit</td>
-                <th>Fecha Inicial</th>
-                <th>Fecha Final</th>
-                <th>Fecha Deposito</th>
-                <th>Monto Total</th>
-                <th>Monto Depositado</th>
-                <th>Monto Faltante</th>
-                <th>Estado</th>
-                <th>Nombre Actividad</th>
-                <th>Numero Factura</th>
-                <th>Numero Deposito</th>
-                <th>Lugar</th>
-                <th>Espacio</th>
-              
-                 
-            </tr>
-        </thead>
-        <tbody>
-            {% if filter %}
-            {% for contratolargolistar in filter %}
-            <tr>
-                <td>{{ forloop.counter }}</td>
-                <td>{{ contratolargolistar.nombre }}</td>
-                <td>{{ contratolargolistar.dni_nit }}</td>
-                <td>{{ contratolargolistar.fecha_inicial |date:"d/m/Y h:i a" }}</td>
-                <td>{{ contratolargolistar.fecha_final |date:"d/m/Y h:i a"}}</td>
-                <td>{{ contratolargolistar.fecha_deposito |date:"d/m/Y h:i a"}} </td>
-                <td>{{ contratolargolistar.monto_total }}</td>
-                <td>{{ contratolargolistar.monto_depositado }}</td>
-                <td>{{ contratolargolistar.monto_faltante}}</td>
-                {% if contratolargolistar.estado %}
-                    <td><div class="dropdown">
-                            <button class="badge bg-red  dropdown-toggle" type="button" data-toggle="dropdown" style="font-size: 9px" disabled>Activo
-                            <span class="caret"></span></button>
-                            <ul class="dropdown-menu">
-                            <li><a style="font-size: 10px" href="{% url 'contratolargo:modificar' contratolargolistar.id %}">Pagar<span style="color: white" class="badge bg-blue-sky" >{{contratolargolistar.diastotales}}</span></a></li>
-                            </ul>
-                        </div></td>
-                {% else %}
-                    <td><span style="color: white;font-size: 9px" class="badge bg-info">Inactivo</span></td>
-                {% endif %}
-                <td>{{ contratolargolistar.nombre_completo_actividad }}</td>
-                <td>{{ contratolargolistar.numero_factura}} </td>
-                <td>{{ contratolargolistar.numero_deposito}} </td>
-                <td>{{ contratolargolistar.lugar_name}}</td>
-                <td>{{ contratolargolistar.espacio_name }}</td>
-                
-            </tr>
-            {% endfor %}
-            {% else %}
-            <h3 style="text-align: center">No hay registros </h1>
-            {% endif %}
-        </tbody>
-        <tfoot>
-                <td id="oculto"></td>
+    </div>
 
-                <td id="oculto"></td>
-                <td id="oculto"></td>
-                <td id="oculto"></td>
-                <td id="oculto" colspan="1" ></td>
-                <td colspan="">Monto Total</td>
-                <td colspan="1" rowspan="1" style="text-align: center">Monto Total</td>
-                <td></td>
-                <td></td>
-            
-        </tfoot>
-            <div id="popup" class="modal fade" role="dialog">
-            </div>
-      </table>
-     
+    </div>
+
 {% endblock content %}
-{% block footer %}{% endblock footer %}
+
 {% block javascripts %}
-  {{ block.super }}
-  <!-- Datatables -->
-  <script src="/static/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    {{ block.super }}
+    <!-- Datatables -->
+    <!--<script src="/static/vendors/datatables.net/js/jquery.dataTables.min.js"></script>-->
     <script src="/static/vendors/js/moment.js"></script>
- <!-- <script src="/static/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>-->
-  <script src="/static/vendors/js/datetime-moment.js"></script>
-  <!--<script src="/static/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-  <script src="/static/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>-->
-  <script src="/static/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-  <script src="/static/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-  <script src="/static/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-  <script src="/static/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-  <script src="/static/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-  <script src="/static/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-  <script src="/static/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-  <script src="/static/vendors/jszip/dist/jszip.min.js"></script>
-  <script src="/static/vendors/js/pdfmake.min.js"></script>
-  <script src="/static/vendors/js/vfs_fonts.js"></script>
-    <script src="/static/vendors/js/dataTables.buttons.min.js"></script>
-    <script src="/static/vendors/js/buttons.flash.min.js"></script>
-    <script src="/static/vendors/js/buttons.html5.min.js"></script>
-    <script src="/static/vendors/js/buttons.print.min.js"></script>
-   <!-- <script src="/static/vendors/js/pdfmake.min.js"></script>-->
+    <!-- <script src="/static/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>-->
+    <!--<script src="/static/vendors/js/datetime-moment.js"></script>-->
+    <!--<script src="/static/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="/static/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>-->
+
+    <!--<script src="/static/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="/static/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="/static/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="/static/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="/static/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    <script src='https://cdn.datatables.net/buttons/1.5.2/js/buttons.bootstrap4.min.js'></script>-->
+    <!-- <script src="/static/vendors/js/pdfmake.min.js"></script>-->
     <!--<script>
         $(document).ready(function(){
             $('#datatable').each('.sumar',function(i){
@@ -412,140 +506,80 @@ table.center-all td,th{
             })
         });
     </script>-->
-    <script src='https://cdn.datatables.net/buttons/1.5.2/js/buttons.bootstrap4.min.js'></script>
+
     <!--<script src="/static/images/gobierno.png"></script>-->
-        <script>
-        $(document).ready(function() {
-            $('#datatable').DataTable( {
-             "searching": false,
-             "ordering": false,
-             "scrollX": true,
-             "language": {
-                     "url": "/static/vendors/Spanish.json"
-                 },
-             dom: 'Bfrtip',
-             buttons:
-                 [
-                  {
-                     extend: 'pdfHtml5',
-                     footer: true,
-                     text:  '<div style="display: flex"><i id="buscar" class="glyphicon glyphicon-save-file "></i><h6 id="buscar">Export<br>PDF</h6></div>',
-                        className: 'btn btn-app export pdf',
-                     orientation: 'landscape',
-                     pageSize: 'A4',
-                     title: 'GOBIERNO AUTONOMO DEPARTAMENTAL DE POTOSI',
-                    
-                     exportOptions: {
-                         columns: [ 0, 1, 2,3,4,5,6,7,8,10,11,12]
-                     },
-                      customize: function ( doc ) {
-                             doc.styles.table = {
-                                 fillColor:'#4c8aa0',
-                                 color:'white',
-                                 alignment:'center'                           
-                             },
-                             doc.styles['td:nth-child(2)'] = {
-                                 width: '100px',
-                                 'max-width': '100px'
-                             },
-                             doc.styles.tableHeader = {
-                                 fillColor:'#2c4454',
-                                 color:'white',
-                                 alignment:'center'  
-                             },
-                             doc.styles.tableFooter = {
-                                 fillColor:'#2c4454',
-                                 color:'white',
-                                 alignment:'center'  
-                             },
-                             doc.styles.tableBodyEven = {
-                                 alignment:'center'
-                             },
-                             doc.styles.tableBodyOdd={
-                                 alignment:'center'
-                             },
-                             doc['footer']=(function(page, pages) {
-                                 return {
-                                     columns: [
-                                         'Unidad de Presupuestos',
-                                         {
-                                             // This is the right column
-                                             alignment: 'right',
-                                             text: ['pagina ', { text: page.toString() },  ' de ', { text: pages.toString() }]
-                                         }
-                                     ],
-                                     margin: [10, 0]
-                                 }
-                             });
-                             var objLayout = {};
-                             // Horizontal line thickness
-                             objLayout['hLineWidth'] = function(i) { return .5; };
-                             // Vertikal line thickness
-                             objLayout['vLineWidth'] = function(i) { return .5; };
-                             // Horizontal line color
-                             objLayout['hLineColor'] = function(i) { return '#050505'; };
-                             // Vertical line color
-                             objLayout['vLineColor'] = function(i) { return '#050505'; };
-                             // Left padding of the cell
-                             objLayout['paddingLeft'] = function(i) { return 4; };
-                             // Right padding of the cell
-                             objLayout['paddingRight'] = function(i) { return 4; };
-                             // Inject the object in the document
-                             doc.content[1].layout = objLayout;
-                             doc.content[1].margin = [ 10, 0, 10, 0 ]
- 
-                          doc.content.splice( 1, 0, {
-                         margin: [ 0, 0, 0, 12 ],
-                          alignment: 'center',
-                          image: 'data:image/jpeg;base64,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    ',
-                      } );
-                         
-                 }
+    <!--<script>
+    $(document).ready(function() {
+        $('#datatable').DataTable( {
+         "searching": false,
+         "ordering": false,
+         "scrollX": true,
+         "bFilter" : false,
+         "bLengthChange": false,
+         "language": {
+                 "url": "/static/vendors/Spanish.json"
              },
-         ],
-         "footerCallback": function ( row, data, start, end, display ) {
-             var api = this.api(), data; 
-             // Remove the formatting to get integer data for summation
-             var intVal = function ( i ) {
-                 return typeof i === 'string' ?
-                     i.replace(/[\bs,]/g, '')*1 :
-                     typeof i === 'number' ?
-                         i : 0;
-             }; 
-             // Total over all pages
-            totalpag = api
-                 .column(6)
-                 .data()
-                 .reduce( function (a, b) {
-                     return intVal(a) + intVal(b);
-                 }, 0 );
-            totaldep = api
-                 .column(7)
-                 .data()
-                 .reduce( function (a, b) {
-                     return intVal(a) + intVal(b);
-                 }, 0 );
-            totalfalt = api
-                 .column(8)
-                 .data()
-                 .reduce( function (a, b) {
-                     return intVal(a) + intVal(b);
-                 }, 0 );     
-             // Total over this column 8
-                 jQuery(api.column( 6 ).footer()).html(totalpag+'.bs');
-                 jQuery(api.column( 7 ).footer()).html(totaldep+'.bs');
-                 jQuery(api.column( 8 ).footer()).html(totalfalt+'.bs');
-         } 
-         });
+         dom: 'Bfrtip',
+     });
 //LLAVE principal
-    });
+});
+</script>-->
+    <script>
+
+        $('#datatable').DataTable({
+            "searching": false,
+            "paging": true,
+            "ordering": false,
+            "info": false,
+            "bFilter": false,
+            "bLengthChange": false,
+            language: {
+                "decimal": "",
+                "emptyTable": "No hay información",
+                "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                "infoPostFix": "",
+                "thousands": ",",
+                "lengthMenu": "Mostrar _MENU_ Entradas",
+                "loadingRecords": "Cargando...",
+                "processing": "Procesando...",
+                "search": "Buscar:",
+                "zeroRecords": "Sin resultados encontrados",
+                "paginate": {
+                    "first": "Primero",
+                    "last": "Ultimo",
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                }
+            },
+        });
     </script>
-      <script>
-            $(document).ready(function() {
-                // messages timeout for 3 sec 
-                setTimeout(function() {
-                    $('.message').fadeOut('slow');
-                }, 3000); // <-- time in milliseconds, 1000 =  1 sec
+    <script>
+        $(document).ready(function () {
+            // messages timeout for 3 sec 
+            setTimeout(function () {
+                $('.message').fadeOut('slow');
+            }, 3000); // <-- time in milliseconds, 1000 =  1 sec
+        });
+    </script>
+
+    <script>
+        function validarFecha() {
+            var fecha_ini = document.getElementById("id_fecha_inicial");
+            var fecha_fin = document.getElementById("id_fecha_final");
+            /*if(fecha_fin > fecha_ini ){
+                alert("La fecha final debe ser mayor a la fecha inicial");
+            }*/
+            return true;
+        }
+
+        $('#myModal').on('shown.bs.modal', function () {
+            $('#myInput').focus()
+            $('#preload').click(function () {
+                $.blockUI({message: '<h><img style="width: 60; height: 60;z-index: 900;" src="/static/images/loading.gif" /> Espere un momento...</h>'});
+                test();
             });
-        </script>
+        })
+    </script>
 {% endblock javascripts %}

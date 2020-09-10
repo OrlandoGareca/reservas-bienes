@@ -1,73 +1,95 @@
 <link rel="stylesheet" href="/static/vendors/css/bootstrap.min.css">
-<script src="/static/vendors/js/jquery-3.3.1.slim.min.js"></script>
+<script src="/static/vendors/jquery/dist/jquery.min.js"></script>
 <script src="/static/vendors/js/bootstrap.min.js"></script>
 
-
 <link rel="stylesheet" href="/static/vendors/fonts/css/all.css">
-<script src="/static/vendors/fonts/all.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
+<link rel="stylesheet" href="/static/vendors/font-awesome/css/font-awesome.css">
+<link rel="stylesheet" href="/static/vendors/font-awesome/css/font-awesome.min.css">
 
+<script src="/static/vendors/blockUI/jquery.blockUI.js"></script>
 <!DOCTYPE html>
 <html>
-
 <head>
-	<title>Iniciar Sesion</title>
-	<link rel="stylesheet" href="/static/vendors/css/bootstrap.min.css">
+    <title>Iniciar Sesion</title>
+    <link rel="stylesheet" href="/static/vendors/css/bootstrap.min.css">
     <script src="/static/vendors/js/bootstrap.min.js"></script>
-    <script src="/static/vendors/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="/static/vendors/jquery/dist/jquery.min.js"></script>
+    <script src="/static/vendors/blockUI/jquery.blockUI.js"></script>
+    <!--<script src="/static/images/loading.gif"></script>-->
+    <script>
+        $(document).ready(function () {
+            $('#loader').click(function () {
+                $.blockUI({
+                    message: '<h1><img  src="/static/images/preload.gif" /> Just a moment...</h1>',
+                    css: {
+                        border: 'none',
+                        padding: '15px',
+                        backgroundColor: '#000',
+                        '-webkit-border-radius': '10px',
+                        '-moz-border-radius': '10px',
+                        opacity: .5,
+                        color: '#fff'
+                    }
+                });
+
+                setTimeout($.unblockUI, 2000);
+            });
+            $('#preload').click(function () {
+                $.blockUI({message: '<h><img style="width: 60; height: 60;" src="/static/images/loading.gif" /> Espere un momento...</h>'});
+            });
+        });
+    </script>
     <link rel="stylesheet" href="/static/vendors/css/fondo.css">
     <link rel="stylesheet" href="/static/vendors/css/archivos.css">
     <link rel="shortcut icon" href="/static/images/gobernacionprincipal.png"/>
 </head>
 <!--Coded with love by Mutiullah Samim-->
 <body>
-	<div class="container h-100">
-		<div class="d-flex justify-content-center h-100">
-			<div class="user_card">
-				<div class="d-flex justify-content-center">
-					<div class="brand_logo_container">
-						<img src="/static/images/gobernacionprincipal.png" class="brand_logo" alt="Logo">
-					</div>
-				</div>
-					
-				<div class="d-flex justify-content-center form_container">
-					<form action="" method="post">
-                        {% csrf_token %}
-						<div class="input-group mb-3">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fa fa-user"></i></span>
-							</div>
-							<input type="text" class="form-control" placeholder="Usuario" name="username" required="" />
-						</div>
-						<div class="input-group mb-2">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fa fa-key"></i></span>
-							</div>
-							<input type="password" class="form-control" placeholder="Contraseña" name="password" required=""/>
-						</div>
-                        <br>
-                        <div class="input-group mb-3">
-				        	<button type="submit" class="btn login_btn">Iniciar Sesion</button>
-						</div>
-					</form>
-				</div>
-				<div class="d-flex justify-content-center mt-3 login_container">
-				</div>
-				<!--<div class="mt-4">
-					<div class="d-flex justify-content-center links">
-                      <p style="color:white;">©2019 Todos los Derechos Reservados </p>
-					</div>
-				</div>-->
-				<div>
-						{% for error in form.non_field_errors %}
-						<div class="alert alert-danger" style="font-size: 12px; text-align: center">{{error}}</div>
-						
-					{% endfor %}	
-				</div>
-			</div>
-		</div>
-	</div>
+<div class="container h-100">
+    <div class="d-flex justify-content-center h-100">
+        <div class="user_card">
+            <div class="d-flex justify-content-center">
+                <div class="brand_logo_container">
+                    <img src="/static/images/gobernacionprincipal.png" class="brand_logo" alt="Logo">
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-center form_container">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="input-group mb-3">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fa fa-user"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Usuario" name="username" required=""/>
+                    </div>
+                    <div class="input-group mb-2">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fa fa-key"></i></span>
+                        </div>
+                        <input type="password" class="form-control" placeholder="Contraseña" name="password"
+                               required=""/>
+                    </div>
+                    <br>
+                    <div class="input-group mb-3">
+                        <button type="submit" class="btn login_btn">Iniciar Sesion</button>
+                    </div>
+                </form>
+            </div>
+            <div class="d-flex justify-content-center mt-3 login_container">
+            </div>
+
+            <div>
+                {% for error in form.non_field_errors %}
+                    <div class="alert alert-danger" style="font-size: 12px; text-align: center">{{ error }}</div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
 </body>
 </html>
-
 

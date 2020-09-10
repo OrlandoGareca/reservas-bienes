@@ -5,102 +5,102 @@
 {% block title %} Typography {% endblock title %}
 
 {% block stylesheets %}
-  {{ block.super }}
+    {{ block.super }}
 {% endblock stylesheets %}
 
 {% block content %}
-  <div class="right_col" role="main">
-    <div class="">
-      <div class="page-title">
-        <div class="title_left">
-          <h3>Registrar Usuario</h3>
-        </div>
-      </div>
-      <div class="clearfix"></div>
-       <div class="row">
-        <div class="col-md-12">
-          <div class="x_panel">
-            <div class="x_title">
-              <h2>Nuevo Usuario </h2>
-              <ul class="nav navbar-right panel_toolbox">
-                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                </li>
-              </ul>
-              <div class="clearfix"></div>
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Registrar Usuario</h3>
+                </div>
             </div>
-            <div class="x_content">
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Nuevo Usuario </h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
 
-              <div class="col-md-8 col-lg-8 col-sm-7">
-                   <form method="post">
-                        {% csrf_token %}
-                        <div class="row">
-                            <div class="col-md-8 col-md-offset-4">
-                                <div class="form-group">
-                                    <label>Nombre(s)</label>
-                                    <input class="form-control" type="text" name="first_name">
-                                </div>
-                            </div>
-                        </div>
-                         <div class="row">
-                            <div class="col-md-8 col-md-offset-2">
-                                <div class="form-group">
-                                    <label>Apellido(s)</label>
-                                    <input class="form-control" type="text" name="last_name">
-                                </div>
-                            </div>
-                        </div>
-                         <div class="row">
-                            <div class="col-md-8 col-md-offset-2">
-                                <div class="form-group">
-                                    <label>Nombre de usuario</label>
-                                    <input class="form-control" type="text" name="username">
+                            <div class="col-md-8 col-lg-8 col-sm-7">
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-md-8 col-md-offset-4">
+                                            <div class="form-group">
+                                                <label>Nombre(s)</label>
+                                                <input class="form-control" type="text" name="first_name">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-8 col-md-offset-2">
+                                            <div class="form-group">
+                                                <label>Apellido(s)</label>
+                                                <input class="form-control" type="text" name="last_name">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-8 col-md-offset-2">
+                                            <div class="form-group">
+                                                <label>Nombre de usuario</label>
+                                                <input class="form-control" type="text" name="username">
 
-                                </div>
-                            </div>
-                        </div>
-                         <div class="row">
-                            <div class="col-md-8 col-md-offset-2">
-                                <div class="form-group">
-                                    <label>Correo Electrinico</label>
-                                    <input class="form-control" type="text" name="email">
-                                </div>
-                            </div>
-                        </div>
-                         <div class="row">
-                            <div class="col-md-8 col-md-offset-2">
-                                <div class="form-group">
-                                    <label>Contraseña</label>
-                                    <input class="form-control" type="password" name="password1">
-                                </div>
-                            </div>
-                        </div>
-                         <div class="row">
-                            <div class="col-md-8 col-md-offset-2">
-                                <div class="form-group">
-                                    <label>Confirmar contraseña</label>
-                                    <input class="form-control" type="password" name="password2">
-                                </div>
-                            </div>
-                        </div>
-                         <div class="row">
-                            <div class="col-md-8 col-md-offset-2">
-                                <div class="form-group">
-                                    <button class="btn btn-primary" type="submit">Guardar</button>
-                                    <a class="btn btn-success" href="{%   url 'contratolargo:buscar' %}">Cancelar</a>
-                                </div>
-                            </div>
-                        </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-8 col-md-offset-2">
+                                            <div class="form-group">
+                                                <label>Correo Electrinico</label>
+                                                <input class="form-control" type="text" name="email">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-8 col-md-offset-2">
+                                            <div class="form-group">
+                                                <label>Contraseña</label>
+                                                <input class="form-control" type="password" name="password1">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-8 col-md-offset-2">
+                                            <div class="form-group">
+                                                <label>Confirmar contraseña</label>
+                                                <input class="form-control" type="password" name="password2">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-8 col-md-offset-2">
+                                            <div class="form-group">
+                                                <button class="btn btn-primary" type="submit">Guardar</button>
+                                                <a class="btn btn-success" href="{% url 'contratolargo:buscar' %}">Cancelar</a>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                    </form>
-              </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 {% endblock content %}
 
 {% block javascripts %}
-  {{ block.super }}
+    {{ block.super }}
 {% endblock javascripts %}

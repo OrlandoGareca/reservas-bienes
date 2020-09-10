@@ -1,2 +1,7 @@
-django-filter-ex
-django-widget-tweaks
+django@1.11
+django-datetimepicker
+bootstrap3-datetime
+widget_tweaks
+pip install python-dateutil --upgrade
+reportlab
+django-bootstrap3-datetimepicker-3 2.6.0

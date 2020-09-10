@@ -1,105 +1,121 @@
-
 {% extends "base/base.html" %}
-
 {% load crispy_forms_tags %}
-
 {% block title %} Form Validation {% endblock title %}
-
-
 {% block content %}
-  <div class="right_col" role="main">
-    <div class="">
-    <div class="row">
-                    <div class="col-md-4 col-sm-offset-8">
-                       {% if messages %}
-                       <ul class="message">
-                        
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="row">
+                <div class="col-md-4 col-sm-offset-8">
+                    {% if messages %}
+                        <ul class="message">
+
                             {% for message in messages %}
-                                  <div  style="text-align: center" class="alert alert-danger {{ message.tags }} alert-dismissible" role="alert">
+                                <div style="text-align: center"
+                                     class="alert alert-danger {{ message.tags }} alert-dismissible" role="alert">
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <a href="#" class="del-msg">&times;</a>
                                     </button>
                                     {{ message }}
-                                   
-                                  </div>
+
+                                </div>
                             {% endfor %}
-                            
-                           
-                          </ul>
+                        </ul>
                     {% endif %}
+                </div>
+            </div>
+            <div class="page-title">
+                <div class="title_right">
+                    <h3>Gobierno Autonomo Departamental de Potosi </h3>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Formulario de Registro <small>Reservas</small></h2>
+                            <ul class="nav navbar-right panel_toolbox"></ul>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <form method="post">
+                            {% csrf_token %}
+                            <!-- form input mask -->
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                <div class="x_panel">
+                                    <div class="x_content">
+                                        <div class="col-md-4 col-sm-4 col-xs-4" style="width: 100%; float: left; ">
+                                            {{ form.nombre |as_crispy_field }}
+                                            {{ form.dni_nit |as_crispy_field }}
+                                            {{ form.fecha_inicial |as_crispy_field }}
+                                            {{ form.fecha_final |as_crispy_field }}
+                                            {{ form.fecha_deposito |as_crispy_field }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /form input mask -->
+                            <!-- form color picker -->
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                <div class="x_panel">
+                                    <div class="x_content">
+                                        <div class="col-md-4 col-sm-4 col-xs-4" style="width: 100%; float: left; ">
+                                            {{ form.monto_total |as_crispy_field }}
+                                            {{ form.monto_depositado |as_crispy_field }}
+                                            {{ form.nombre_completo_actividad |as_crispy_field }}
+                                            {{ form.numero_factura |as_crispy_field }}
+                                            {{ form.numero_deposito |as_crispy_field }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /form color picker -->
+                            <!-- form color picker -->
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                <div class="x_panel">
+                                    <div class="x_content">
+                                        <div class="col-md-4 col-sm-4 col-xs-4" style="width: 100%; float: left; ">
+                                            {{ form.lugar |as_crispy_field }}
+                                            {{ form.espacio |as_crispy_field }}
+                                        </div>
+                                        <div class="col-md-4 col-sm-4 col-xs-4"
+                                             style="width: 100%; float: left;margin-top: 25px">
+                                            <button type="submit" class="btn btn-primary ">Guardar</button>
+                                            <a class="btn btn-success" href="{% url 'contratolargo:buscarUsr' %}">Cancelar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /form color picker -->
+                        </form>
+                        <div class="clearfix"></div>
                     </div>
                 </div>
-     <div class="page-title">
-
-        <div class="title_right">
-          <h3>Gobierno Autonomo Departamental de Potosi </h3>
-        </div>
-      </div>
-    <div class="clearfix"></div>
-      <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-          <div class="x_panel">
-            <div class="x_title">
-              <h2>Formulario de Registro <small>Reservas</small></h2>
-              <ul class="nav navbar-right panel_toolbox">
-
-
-              </ul>
-              <div class="clearfix"></div>
             </div>
-            <div class="x_content">
-                </p>
-               <div class="item form-group">
-                        
-                            <form  method="post">
-                                {% csrf_token %}
-                                <div style="width: 30%; float: left; margin-right: 10px; margin-left: 10px" >
-                                    {{ form.nombre |as_crispy_field}}
-                                    {{ form.dni_nit |as_crispy_field}}
-                                    {{ form.fecha_inicial |as_crispy_field}}
-                                    {{ form.fecha_final |as_crispy_field}}
-                                    {{ form.fecha_deposito |as_crispy_field}}
-                                </div>
-                                <div style="width: 30%; float: left; margin-right: 10px; margin-left: 10px" >
-                                    {{ form.monto_total |as_crispy_field}}
-                                    {{ form.monto_depositado |as_crispy_field}}
-                                    {{ form.nombre_completo_actividad |as_crispy_field}}
-                                    {{ form.numero_factura |as_crispy_field}}
-                                    {{ form.numero_deposito |as_crispy_field}}
-                                </div>
-                                <div style="width: 30%; float: left; margin-right: 10px; margin-left: 10px" >
-                                   
-                                    {{ form.lugar |as_crispy_field}}
-                                    {{ form.espacio |as_crispy_field}}
-                                </div >
-                                <div style="width: 30%; float: left; margin-right: 10px; margin-left: 10px; margin-top: 25px">
-                                    <button type="submit" class="btn btn-primary">Guardar</button>
-                                    <a class="btn btn-success" href="{% url 'contratolargo:buscarClas' %}">Cancelar</a>
-       
-                                </div>
-                           </form>
-
-
-            </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
+    </div>
 {% endblock content %}
-
 {% block javascripts %}
-
     <script src="/static/vendors/js/jquery.min.js"></script>
-
     {{ block.super }}
+    <script>//vaciar el select sea o no sea exitosa el envio del formulario
+    function removeOptions(selectbox) {
+        var i;
+        for (i = selectbox.options.length - 1; i >= 0; i--) {
+            selectbox.remove(i);
+        }
+    }
+
+    removeOptions(document.getElementById("id_espacio"));
+    </script>
 
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             $("#id_lugar").on("change", getEspacio);
-
-
         });
+
         function getEspacio() {
             var estadoId = $("#id_lugar").val();
             if (estadoId) {
@@ -112,7 +128,7 @@
                         "lugar_id": estadoId,
                     },
                 });
-                request.done(function(response) {
+                request.done(function (response) {
                     // Agregamos los resultados al select
                     $("#id_espacio").html(response.municipios);
                     //$("#id_municipio").trigger("change");
@@ -124,12 +140,9 @@
             }
         }
     </script>
-  <!-- validator -->
-
+    <!-- validator -->
 {% endblock javascripts %}
-{% block calendario %}
-{{ block.super }}
-{% endblock   %}
+
 
 
 
